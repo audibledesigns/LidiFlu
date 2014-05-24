@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="SHOP" Class="ShopDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=.\SQLEXPRESS;AttachDbFilename=|DataDirectory|\SHOP.mdf;Integrated Security=True;User Instance=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="SHOPConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.tblCustomer" Member="Customers">
+    <Type Name="Customer">
+      <Column Name="CUSTID" Type="System.String" DbType="NVarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="FName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="SName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="StreetAddress" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="CityAddress" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="PostCode" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Tel" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Email" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Association Name="Customer_Order" Member="Orders" ThisKey="CUSTID" OtherKey="CUSTID" Type="Order" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tblOrder" Member="Orders">
+    <Type Name="Order">
+      <Column Name="OrderID" Type="System.String" DbType="NVarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="CUSTID" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="OrderDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="Order_OrderLine" Member="OrderLines" ThisKey="OrderID" OtherKey="OrderID" Type="OrderLine" />
+      <Association Name="Customer_Order" Member="Customer" ThisKey="CUSTID" OtherKey="CUSTID" Type="Customer" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tblProduct" Member="Products">
+    <Type Name="Product">
+      <Column Name="ProdID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ProdName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="ProdPrice" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="ProdImage" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="ProdDescription" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="ProdDescriptionFull" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Association Name="Product_OrderLine" Member="OrderLines" ThisKey="ProdID" OtherKey="ProdID" Type="OrderLine" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tblOrderLine" Member="OrderLines">
+    <Type Name="OrderLine">
+      <Column Name="OrderLineID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ProdID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="OrderID" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Quantity" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Order_OrderLine" Member="Order" ThisKey="OrderID" OtherKey="OrderID" Type="Order" IsForeignKey="true" />
+      <Association Name="Product_OrderLine" Member="Product" ThisKey="ProdID" OtherKey="ProdID" Type="Product" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Function Name="dbo.InsertCustomer" Method="InsertCustomer">
+    <Parameter Name="CUSTID" Parameter="cUSTID" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="FName" Parameter="fName" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="SName" Parameter="sName" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="StreetAddress" Parameter="streetAddress" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="CityAddress" Parameter="cityAddress" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="PostCode" Parameter="postCode" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="Email" Parameter="email" Type="System.String" DbType="NVarChar(50)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.InsertOrderLine" Method="InsertOrderLine">
+    <Parameter Name="prodID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="orderID" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="quantity" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.InsertOrder" Method="InsertOrder">
+    <Parameter Name="orderID" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="custID" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="orderDate" Type="System.DateTime" DbType="DateTime" />
+    <Return Type="System.Int32" />
+  </Function>
+</Database>

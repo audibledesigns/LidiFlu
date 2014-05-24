@@ -1,0 +1,139 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="Lidiflu.Master.cs" Inherits="Lidiflu" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+<title></title>
+    <asp:ContentPlaceHolder ID="head" runat="server">      
+    </asp:ContentPlaceHolder>
+       <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
+         <script src="Scripts/jquery.slides.min.js" type="text/javascript"></script>
+         <script type="text/javascript">
+
+             $(document).ready(function () {
+
+                 $('#resizer a').click(function () {
+                     var textSize = $(this).parent().attr('class');
+                     $('body').removeClass('small medium large').addClass(textSize);
+                     $('p').removeClass('small medium large').addClass(textSize);
+                     return false;
+                 });
+             }); 
+    </script>
+    <link href="Styles/StyleSheet.css" rel="stylesheet" type="text/css" />
+
+</head>
+<body>
+    <form id="form1" runat="server">
+    	<header>	
+			<div id="topnav" class="container_12">	
+				<div id="resizer" class="grid_2">
+					 <ul>
+                        <li class="small"><a href="#">A</a></li>
+                        <li class="medium"><a href="#">A</a> </li>
+                        <li class="large"><a href="#">A</a></li>
+                    </ul>
+				</div>	
+				<div id="shoptools" class="grid_7 prefix_3">
+					<ul>
+						<li><asp:LoginView ID="LoginView1" runat="server">
+                                <AnonymousTemplate><a href="Register.aspx">Account</a></AnonymousTemplate>
+                                <LoggedInTemplate><asp:Label runat="server" Text="Welcome, " Font-Size="12px"></asp:Label><asp:LoginName Font-Size="12px" ID="LoginName1" runat="server" />
+                                    <asp:LoginStatus Font-Size="12px" ForeColor="#2583B7" ID="LoginStatus1" runat="server" />                                    
+                                </LoggedInTemplate>
+                            </asp:LoginView></li>
+						<li><asp:Label ID="lblItems" runat="server" Text=""></asp:Label></li>
+						<li><asp:Label ID="lblCost" runat="server" Text="£0.00"></asp:Label></li>
+						<li><a href="ShoppingCart.aspx">Shopping Cart</a></li>			
+					</ul>				
+				</div>		
+			</div>
+			<div id="headercontent" class="container_12">
+				<div id="logo" class="grid_3">
+					<a href="Default.aspx"><img src="Images/images/lidiflulogo.png" width="160px" height="97px" alt="lidiflulogo" /></a>
+				</div>
+				<div id="navbar" class="grid_5 prefix_4">
+				
+					<ul>
+						<li><a href="Default.aspx">Home</a></li>
+						<li><a href="Shop.aspx">Shop</a></li>
+						<li><a href="#">About</a></li>
+						<li><a href="Contact.aspx">Contact</a></li>			
+					</ul>	
+				
+				</div>
+			</div>
+		</header>
+		<div id="maincontent" class="container_12">
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+        
+            </asp:ContentPlaceHolder>
+        </div>
+		<footer>
+			<div id="footercontent" class="container_12">
+				<div id="shop" class="grid_2 ">
+					<h2>Shop</h2>
+					<ul>
+						<li><a href="Shop.aspx#category1">Generators</a></li>
+						<li><a href="Shop.aspx#category2">Gearing</a></li>
+						<li><a href="Shop.aspx#category3">Turbines</a></li>
+						<li><a href="Shop.aspx#category4">Rotors</a></li>
+						<li><a href="#">Repair Servies</a></li>					
+					</ul>
+				</div>
+				<div id="customer-services" class="grid_2">
+					<h2>Customer Services</h2>
+					<ul>
+						<li><a href="#">Ordering &amp; Payments</a></li>
+						<li><a href="#">Shipping</a></li>
+						<li><a href="#">Returns</a></li>						
+						<li><a href="#">Terms and Conditions</a></li>					
+					</ul>
+
+				</div>
+				<div id="contact" class="grid_4">
+					<h2>Contact Us</h2>
+					<div class="grid_2 alpha">
+						<ul>
+							<li><p class="grey-text">For all questions about orders or general enquiries please contact:</p></li>
+							<li><p>+44 (0) 1313 123 1235</p></li>
+							<li><a style="color:#2583B7" href="mailto:enquiries@lidiflu.com">enquiries@lidiflu.com</a></li>
+						</ul>
+					</div>
+					<div class="grid_2 omega">
+						<ul>
+							<li><p>Address Line1</p></li>
+							<li><p>Address Line2</p></li>
+							<li><p>Address Line3</p></li>
+							<li><p class="grey-text">Office Hours:</br>Mon-Fri 9.30am-6.00pm</p></li>
+						</ul>
+
+					</div>
+				</div>
+				<div id="weaccept" class="grid_2">
+					<h2>We Accept</h2>
+					<img src="Images/paymentsmall.png" alt="payments we accept"/>
+				</div>
+				<div id="followus" class="grid_2 ">
+					<h2>Follow Us</h2>
+						<ul>
+							<li><img src="Images/images/LinkedInLogo.png" alt="linkedinsymbol"/></li>
+							<li><img src="Images/images/RSSLogo.png" alt="rsssymbol"/></li>
+							<li><img src="Images/images/FacebookLogo.png" alt="facebooklogo"/></li>
+							<li><img src="Images/images/TwitterLogo.png" alt="twittersymbol"/></li>
+						</ul>
+
+				</div>
+			</div>
+			<div id="bottom" class="container_12">
+				<p>Copyright © 2013 - 2014 Lidiflu Ltd. All rights reserved. Designed by Niall Ferguson</p>
+			</div>
+		</footer>
+
+    
+        
+    
+    </form>
+</body>
+</html>

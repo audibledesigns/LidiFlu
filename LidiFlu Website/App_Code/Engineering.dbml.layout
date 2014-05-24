@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="Engineering">
+  <DataContextMoniker Name="/EngineeringDataContext" />
+  <nestedChildShapes>
+    <classShape Id="e2c5e755-4419-444b-8e19-3072cb29082f" absoluteBounds="5.75, 1.625, 2, 1.3862939453124998">
+      <DataClassMoniker Name="/EngineeringDataContext/CompletedJob" />
+      <nestedChildShapes>
+        <elementListCompartment Id="3cbacdf9-599e-4531-83fa-8b1a40d04333" absoluteBounds="5.7650000000000006, 2.085, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="613a83a6-4a91-4151-b1c2-890f9d4824e7" absoluteBounds="2.75, 2.125, 2, 2.5401025390625005">
+      <DataClassMoniker Name="/EngineeringDataContext/Job" />
+      <nestedChildShapes>
+        <elementListCompartment Id="51e3dd8b-3d01-4762-bfba-8443b0fd7548" absoluteBounds="2.7650000000000006, 2.585, 1.9700000000000002, 1.9801025390625" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="c6021233-d77b-42ed-a4f6-1e7e074f7301" absoluteBounds="2.625, 0.625, 2, 1.1939925130208335">
+      <DataClassMoniker Name="/EngineeringDataContext/Engineer" />
+      <nestedChildShapes>
+        <elementListCompartment Id="c890bd94-3c34-4227-ba90-9cf62c8147d3" absoluteBounds="2.64, 1.085, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(4.75 : 2.56814697265625); (5.75 : 2.56814697265625)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/EngineeringDataContext/Job/Job_CompletedJob" />
+      <nodes>
+        <classShapeMoniker Id="613a83a6-4a91-4151-b1c2-890f9d4824e7" />
+        <classShapeMoniker Id="e2c5e755-4419-444b-8e19-3072cb29082f" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(4.625 : 1.1249995); (6.75 : 1.1249995); (6.75 : 1.625)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/EngineeringDataContext/Engineer/Engineer_CompletedJob" />
+      <nodes>
+        <classShapeMoniker Id="c6021233-d77b-42ed-a4f6-1e7e074f7301" />
+        <classShapeMoniker Id="e2c5e755-4419-444b-8e19-3072cb29082f" />
+      </nodes>
+    </associationConnector>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>

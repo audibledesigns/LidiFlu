@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="EngineerServices" Class="EngineeringDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=.\SQLEXPRESS;AttachDbFilename=|DataDirectory|\EngineerServices.mdf;Integrated Security=True;User Instance=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="EngineerServicesConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.CompletedJob" Member="CompletedJobs">
+    <Type Name="CompletedJob">
+      <Column Name="JobID" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
+      <Column Name="EngineerID" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
+      <Column Name="CompletedID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Association Name="Job_CompletedJob" Member="Job" ThisKey="JobID" OtherKey="JobID" Type="Job" IsForeignKey="true" />
+      <Association Name="Engineer_CompletedJob" Member="Engineer" ThisKey="EngineerID" OtherKey="EngineerID" Type="Engineer" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Job" Member="Jobs">
+    <Type Name="Job">
+      <Column Name="JobID" Type="System.String" DbType="NChar(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="JobTitle" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="JobDescription" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="JobLocation" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Assigned" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="JobDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Completed" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="long" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="lat" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Job_CompletedJob" Member="CompletedJobs" ThisKey="JobID" OtherKey="JobID" Type="CompletedJob" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Engineer" Member="Engineers">
+    <Type Name="Engineer">
+      <Column Name="EngineerID" Type="System.String" DbType="NChar(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="EngineerName" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
+      <Association Name="Engineer_CompletedJob" Member="CompletedJobs" ThisKey="EngineerID" OtherKey="EngineerID" Type="CompletedJob" />
+    </Type>
+  </Table>
+</Database>
